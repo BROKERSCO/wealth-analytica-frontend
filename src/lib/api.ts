@@ -5,7 +5,10 @@ import Cookies from 'js-cookie'
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://analytica.wmwealthmanagement.com.br'
 export const api = axios.create({
   baseURL: API_URL,
-  headers: { 'Content-Type': 'application/json' },
+  headers: {
+    'Content-Type': 'application/json',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+  },
 })
 
 // Injeta token em toda requisição
