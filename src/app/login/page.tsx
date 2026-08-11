@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { toast } from 'sonner'
+import Link from 'next/link'
 import { useAuth } from '@/lib/auth-context'
 import { Eye, EyeOff, BarChart3 } from 'lucide-react'
 
@@ -104,7 +105,13 @@ export default function LoginPage() {
           </form>
         </div>
 
-        <p className="text-center text-brand-200 text-xs mt-6">
+        <p className="text-center text-brand-100 text-sm mt-4">
+            Ainda não tem conta?{' '}
+            <Link href="/registro" className="text-white font-medium hover:underline">
+              Solicitar acesso
+            </Link>
+          </p>
+          <p className="text-center text-brand-200 text-xs mt-6">
           © {new Date().getFullYear()} Wealth Analytica — Todos os direitos reservados
         </p>
       </div>

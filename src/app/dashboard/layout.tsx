@@ -5,15 +5,13 @@ import { useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { useAuth } from '@/lib/auth-context'
-import {
-  BarChart3, FolderOpen, FileText,
-  LogOut, User, ChevronRight
-} from 'lucide-react'
+import { BarChart3, FolderOpen, FileText, LogOut, User, ChevronRight, Shield } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
-  { href: '/dashboard/cases',  label: 'Casos',  icon: FolderOpen },
-  { href: '/dashboard/laudos', label: 'Laudos', icon: FileText },
+  { href: '/dashboard/cases',         label: 'Casos',   icon: FolderOpen },
+  { href: '/dashboard/laudos',        label: 'Laudos',  icon: FileText },
+  { href: '/dashboard/perfil',        label: 'Perfil',  icon: User },
 ]
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -75,6 +73,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             )
           })}
         </nav>
+
+        {/* Admin */}
+        {user.perfil === 'SUPER_ADMIN' && (
+          <div className="px-4 pb-2">
+            <Link
+              href="/dashboard/admin"
+              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-amber-300 hover:bg-brand-600 hover:text-white transition-colors"
+            >
+              <Shield className="w-4 h-4" />
+              Admin
+            </Link>
+          </div>
+        )}
 
         {/* Usuário */}
         <div className="p-4 border-t border-brand-600">
