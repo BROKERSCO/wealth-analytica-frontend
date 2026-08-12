@@ -5,7 +5,11 @@ import { useState, useEffect } from 'react'
 import { api } from '@/lib/api'
 import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
-import { PluggyConnect } from 'react-pluggy-connect'
+import dynamic from 'next/dynamic'
+const PluggyConnect = dynamic(
+  () => import('react-pluggy-connect').then(m => m.PluggyConnect),
+  { ssr: false }
+)
 import {
   Wifi, CheckCircle, AlertCircle, ArrowRight,
   Building2, RefreshCw, Download
