@@ -18,11 +18,25 @@ api.interceptors.request.use(config => {
   return config
 })
 
-// Redireciona para login se 401
+// Refresh automático do token se 401
 api.interceptors.response.use(
   res => res,
   async err => {
-    if (err.response?.status === 401) {
+    const original = err.config
+    if (err.response?.status === 401 && !original._retry) {
+      original._retry = true
+      try {
+        const refreshToken = Cookies.get('refresh_token')
+        if (refreshToken) {
+          const { data } = await axios.post(`${API_URL}/api/auth/refresh`, { refreshToken })
+          Cookies.set('access_token', data.accessToken, { expires: 1 })
+          if (data.refreshToken) Cookies.set('refresh_token', data.refreshToken, { expires: 7 })
+          original.headers.Authorization = `Bearer ${data.accessToken}`
+          return api(original)
+        }
+      } catch {
+        // refresh falhou
+      }
       Cookies.remove('access_token')
       Cookies.remove('refresh_token')
       window.location.href = '/login'
