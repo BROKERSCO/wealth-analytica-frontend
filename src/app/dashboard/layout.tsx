@@ -5,12 +5,13 @@ import { useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { useAuth } from '@/lib/auth-context'
-import { BarChart3, FolderOpen, FileText, LogOut, User, ChevronRight, Shield } from 'lucide-react'
+import { BarChart3, FolderOpen, FileText, LogOut, User, ChevronRight, Shield, TrendingUp } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
   { href: '/dashboard/cases',         label: 'Casos',   icon: FolderOpen },
   { href: '/dashboard/laudos',        label: 'Laudos',  icon: FileText },
+  { href: '/dashboard/analytics',     label: 'Analytics', icon: TrendingUp },
   { href: '/dashboard/perfil',        label: 'Perfil',  icon: User },
 ]
 
