@@ -142,7 +142,7 @@ export default function OpenFinancePage() {
           <h2 className="font-semibold text-gray-900 mb-4">Selecione seu banco</h2>
           <PluggyConnect
             connectToken={connectToken}
-            includeSandbox={false}
+            includeSandbox={true}
             onSuccess={onConexaoSucesso}
             onError={(error: any) => {
               toast.error('Erro na conexão: ' + error.message)
